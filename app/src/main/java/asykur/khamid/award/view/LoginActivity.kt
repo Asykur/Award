@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }.setActionTextColor(Color.GREEN)
             val view = sb.view
-            view.setBackgroundColor(Color.GRAY)
+            view.setBackgroundColor(resources.getColor(R.color.darkGrey))
             sb.show()
         }
     }

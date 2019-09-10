@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgFilter"
+            android:layout_width="@dimen/dimens_25dp"
+            android:layout_height="@dimen/dimens_25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_filter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_toStartOf="@+id/imgMenu"
+            android:layout_toLeftOf="@+id/imgMenu"
+            android:layout_toEndOf="@+id/imgFilter"
+            android:layout_toRightOf="@+id/imgFilter"
+            android:text="Awards"
+            android:textAlignment="center"
+            android:textColor="@color/darkGrey"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgMenu"
+            android:layout_width="@dimen/dimens_25dp"
+            android:layout_height="@dimen/dimens_25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dimens_20dp"
+            android:layout_marginRight="@dimen/dimens_20dp"
+            android:src="@drawable/ic_menu" />
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>

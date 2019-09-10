@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimens_20dp"
+    tools:context=".view.FilterActivity">
+
+    <RelativeLayout
+        android:id="@+id/relaTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgCloseFilter"
+            android:layout_width="@dimen/dimens_30dp"
+            android:layout_height="@dimen/dimens_30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_close" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lingrouping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relaTitle"
+        android:layout_marginTop="@dimen/dimens_20dp"
+        android:layout_marginBottom="@dimen/dimens_20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linGroupPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_30dp"
+            android:background="@drawable/stroke_blue"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvFilteredPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_10dp"
+                android:layout_marginEnd="@dimen/dimens_5dp"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                tools:text="Point: 10000 - 234000" />
+
+            <ImageButton
+                android:id="@+id/btnClosePoint"
+                android:layout_width="@dimen/dimens_15dp"
+                android:layout_height="@dimen/dimens_15dp"
+                android:layout_marginEnd="@dimen/dimens_5dp"
+                android:background="@drawable/circle_blue"
+                android:padding="1dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_close_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linGroupType"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_30dp"
+            android:layout_marginTop="@dimen/dimens_10dp"
+            android:background="@drawable/stroke_blue"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvFilteredType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_10dp"
+                android:layout_marginEnd="@dimen/dimens_5dp"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                tools:text="Type: Vouchers, Products" />
+
+            <ImageButton
+                android:id="@+id/btnCloseType"
+                android:layout_width="@dimen/dimens_15dp"
+                android:layout_height="@dimen/dimens_15dp"
+                android:layout_marginEnd="@dimen/dimens_5dp"
+                android:background="@drawable/circle_blue"
+                android:padding="1dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_close_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linClearAll"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_30dp"
+            android:layout_marginTop="@dimen/dimens_10dp"
+            android:background="@drawable/stroke_blue"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvClearAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_10dp"
+                android:layout_marginEnd="@dimen/dimens_10dp"
+                android:text="@string/clear_all_filter"
+                android:textColor="@color/blue"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lingrouping"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/point_needed"
+            android:textSize="@dimen/text_16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvMinSB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_18sp"
+                android:textStyle="bold"
+                tools:text="IDR 10.000" />
+
+            <TextView
+                android:id="@+id/tvMaxSB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_18sp"
+                android:textStyle="bold"
+                tools:text="IDR 500.000" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_10dp"
+            android:layout_marginBottom="@dimen/dimens_20dp"
+            android:max="500000"
+            android:min="10000"
+            android:progressTint="@color/blue"
+            android:thumb="@drawable/tumb_custom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/awards_type"
+            android:textSize="@dimen/text_16sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/cbAllType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimens_5dp"
+            android:buttonTint="@color/blue"
+            android:onClick="onCBClicked"
+            android:text="@string/all_type"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_16sp" />
+
+        <CheckBox
+            android:id="@+id/cbVouchers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimens_5dp"
+            android:buttonTint="@color/blue"
+            android:onClick="onCBClicked"
+            android:text="@string/vouchers"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_16sp" />
+
+        <CheckBox
+            android:id="@+id/cbProducts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimens_5dp"
+            android:buttonTint="@color/blue"
+            android:onClick="onCBClicked"
+            android:text="@string/products"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_16sp" />
+
+        <CheckBox
+            android:id="@+id/cbOthers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimens_5dp"
+            android:buttonTint="@color/blue"
+            android:onClick="onCBClicked"
+            android:text="@string/others"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_16sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnFilter"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimens_2dp"
+        android:background="@drawable/small_rounded_blue"
+        android:text="@string/filter"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold" />
+</RelativeLayout>

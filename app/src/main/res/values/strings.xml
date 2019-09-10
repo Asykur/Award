@@ -18,8 +18,16 @@
     <string name="email_address">Email Address</string>
     <string name="sign_in_wording">Enter your email address \nto sign in and continue</string>
     <string name="award">AWARD</string>
-    <string name="wording_add_email">Email belum terdaftar, daftarkan sekarang?</string>
-    <string name="add_email">Tambahkan</string>
+    <string name="wording_add_email">Email belum terdaftar</string>
+    <string name="add_email">Daftarkan</string>
     <string name="success_add_email">Email Berhasil ditambahakan</string>
     <string name="success_login">Login Berhasil..</string>
+    <string name="point_needed">Point Needed</string>
+    <string name="filter">Filter</string>
+    <string name="others">Others</string>
+    <string name="products">Products</string>
+    <string name="vouchers">Vouchers</string>
+    <string name="all_type">All Type</string>
+    <string name="awards_type">Awards Type</string>
+    <string name="clear_all_filter">Clear All Filter</string>
 </resources>
