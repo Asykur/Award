@@ -30,4 +30,9 @@
     <string name="all_type">All Type</string>
     <string name="awards_type">Awards Type</string>
     <string name="clear_all_filter">Clear All Filter</string>
+    <string name="awards_menu">Awards Menu</string>
+    <string name="home">Home</string>
+    <string name="cards">Cards</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 </resources>

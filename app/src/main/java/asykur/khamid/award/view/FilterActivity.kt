@@ -25,7 +25,7 @@ class FilterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
 
-        tvMinSB.text = CurrencyIDRFormatter().formatIDR(seekbar.progress, true)
+        tvMinSB.text = CurrencyIDRFormatter().formatIDR(minSB, true)
         seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -64,9 +64,15 @@ class FilterActivity : AppCompatActivity() {
         }
         btnClosePoint.setOnClickListener {
             linGroupPoint.visibility = View.GONE
+            seekbar.progress = minSB
         }
         btnCloseType.setOnClickListener {
             linGroupType.visibility = View.GONE
+            cbAllType.isChecked = false
+            cbVouchers.isChecked = false
+            cbProducts.isChecked = false
+            cbOthers.isChecked = false
+            map.clear()
         }
 
         linClearAll.setOnClickListener {

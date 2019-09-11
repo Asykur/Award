@@ -8,16 +8,14 @@ import asykur.khamid.award.utils.SetDataAwards
 
 class AwardsViewModel: ViewModel() {
 
-    var awardsViewModel: MutableLiveData<ArrayList<AwardsModel>> = MutableLiveData()
-    var start = 0
-    var end = 10
+    private var awardsViewModel: MutableLiveData<ArrayList<AwardsModel>> = MutableLiveData()
+    private var start = 0
+    private var end = 10
     private var list: ArrayList<AwardsModel> = ArrayList()
     private val allData = SetDataAwards().getDataAwards()
     private var dataSize: Int = allData.size
 
-
     fun getDataAwards(){
-
         if (dataSize >= end){
             subList(start,end)
             end += 10
@@ -25,7 +23,6 @@ class AwardsViewModel: ViewModel() {
         }else{
             subList(start,dataSize)
         }
-
     }
 
     private fun subList(start: Int, end: Int){
