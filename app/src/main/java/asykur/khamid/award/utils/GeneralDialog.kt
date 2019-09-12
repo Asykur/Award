@@ -18,9 +18,7 @@ class GeneralDialog(private val message: String) : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        isCancelable = false
-        setStyle(STYLE_NO_FRAME, R.style.AlertDialogStyle)
-    }
+        isCancelable = false }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)

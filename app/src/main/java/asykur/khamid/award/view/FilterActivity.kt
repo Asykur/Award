@@ -1,7 +1,7 @@
 package asykur.khamid.award.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -15,17 +15,29 @@ import org.jetbrains.anko.toast
 
 
 class FilterActivity : AppCompatActivity() {
+    private lateinit var typeList: ArrayList<String>
     private var cbProgressValue = 0
-    private val minSB = 10000
+    private var curSBValue: Int = 0
     private var map: HashMap<String, String> = HashMap()
     var isPointVisible = false
     var isTypeVisible = false
+    companion object{
+        const val filter_type = "filterType"
+        const val filter_point = "filterPoint"
+        const val minSB = 10000
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
-
         tvMinSB.text = CurrencyIDRFormatter().formatIDR(minSB, true)
+        initOnClick()
+        initViewListener()
+
+    }
+
+    private fun initViewListener() {
         seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -39,6 +51,7 @@ class FilterActivity : AppCompatActivity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 if (seekBar != null) {
+                    curSBValue = seekBar.progress
                     if (seekBar.progress > minSB) {
                         linGroupPoint.visibility = View.VISIBLE
                         isPointVisible = true
@@ -55,6 +68,51 @@ class FilterActivity : AppCompatActivity() {
 
         })
 
+        linGroupPoint.viewTreeObserver.addOnGlobalLayoutListener {
+            if (linGroupPoint.isVisible) {
+                isPointVisible = true
+                isBothSelected(isPointVisible,isTypeVisible)
+            }else{
+                isPointVisible = false
+                isBothSelected(isPointVisible,isTypeVisible)
+            }
+        }
+
+        linGroupType.viewTreeObserver.addOnGlobalLayoutListener {
+            if (linGroupType.isVisible) {
+                isTypeVisible = true
+                isBothSelected(isPointVisible,isTypeVisible)
+            }else{
+                isTypeVisible = false
+                isBothSelected(isPointVisible,isTypeVisible)
+            }
+        }
+
+        btnFilter.setOnClickListener {
+            val intent = Intent()
+            if (linGroupPoint.isVisible && linGroupType.isVisible){
+                typeList = ArrayList(map.values)// convert map to list
+                intent.putExtra(filter_point,curSBValue)
+                intent.putExtra(filter_type,typeList)
+                toastConfirmFilter()
+            }else if (linGroupType.isVisible){
+                typeList = ArrayList(map.values)// convert map to list
+                intent.putExtra(filter_type,typeList)
+                toastConfirmFilter()
+            }else if (linGroupPoint.isVisible){
+                intent.putExtra(filter_point,curSBValue)
+                toastConfirmFilter()
+            }
+            setResult(MainActivity.result_code_filter,intent)
+            finish()
+        }
+    }
+
+    private fun toastConfirmFilter(){
+        toast("Applying Confirmed")
+    }
+
+    private fun initOnClick() {
         imgCloseFilter.setOnClickListener {
             finish()
             overridePendingTransition(
@@ -85,35 +143,6 @@ class FilterActivity : AppCompatActivity() {
             cbOthers.isChecked = false
             map.clear()
             seekbar.progress = minSB
-            toast("Filter Canceled")
-            Handler().postDelayed({
-                finish()
-            },1000)
-        }
-
-        linGroupPoint.viewTreeObserver.addOnGlobalLayoutListener {
-            if (linGroupPoint.isVisible) {
-                isPointVisible = true
-                isBothSelected(isPointVisible,isTypeVisible)
-            }else{
-                isPointVisible = false
-                isBothSelected(isPointVisible,isTypeVisible)
-            }
-        }
-
-        linGroupType.viewTreeObserver.addOnGlobalLayoutListener {
-            if (linGroupType.isVisible) {
-                isTypeVisible = true
-                isBothSelected(isPointVisible,isTypeVisible)
-            }else{
-                isTypeVisible = false
-                isBothSelected(isPointVisible,isTypeVisible)
-            }
-        }
-
-        btnFilter.setOnClickListener {
-            finish()
-            toast("Filter Confirmed")
         }
 
     }

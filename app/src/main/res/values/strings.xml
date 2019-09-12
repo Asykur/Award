@@ -35,4 +35,8 @@
     <string name="cards">Cards</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
+    <string name="logging_in">Logging in…</string>
+    <string name="empty_email">Email cannot empty</string>
+    <string name="invalid_email">Invalid email format</string>
+    <string name="process_logout">Logging out…</string>
 </resources>

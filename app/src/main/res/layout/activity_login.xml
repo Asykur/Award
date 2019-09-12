@@ -30,15 +30,13 @@
             android:text="@string/award"
             android:layout_gravity="center_horizontal"
             android:textStyle="bold"
-            android:textSize="@dimen/text_35sp"/>
+            android:textSize="30sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:layout_marginTop="@dimen/dimens_10dp"
-            android:textSize="@dimen/dimens_16sp"
-            android:textStyle="bold"
             android:text="@string/sign_in_wording"/>
 
         <EditText
@@ -55,7 +53,7 @@
 
         <Button
             android:layout_width="@dimen/dimens_150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimens_40dp"
             android:text="@string/sign_in"
             android:background="@drawable/small_rounded_dark_grey"
             android:textColor="@color/colorWhite"

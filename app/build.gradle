@@ -70,4 +70,11 @@ dependencies {
     //Anko
     implementation 'org.jetbrains.anko:anko-commons:0.10.7'
 
+    // paging
+    implementation 'androidx.paging:paging-runtime-ktx:2.1.0-rc01' // For Kotlin use paging-runtime-ktx
+    // alternatively - without Android dependencies for testing
+    testImplementation "androidx.paging:paging-common:$paging_version" // For Kotlin use paging-common-ktx
+    // optional - RxJava support
+    implementation "androidx.paging:paging-rxjava2:$paging_version" // For Kotlin use paging-rxjava2-ktx
+
 }

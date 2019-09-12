@@ -4,6 +4,7 @@ buildscript {
     ext.kotlin_version = '1.3.50'
     ext.jetpackVersion= '2.0.1'
     ext.roomVersion='2.0.0'
+    ext.paging_version = "2.1.0"
 
     repositories {
         google()

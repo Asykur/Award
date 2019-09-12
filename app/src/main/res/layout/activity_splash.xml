@@ -17,16 +17,17 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="@dimen/dimens_150dp"
-            android:layout_height="@dimen/dimens_150dp"
+            android:layout_width="@dimen/dimens_120dp"
+            android:layout_height="@dimen/dimens_120dp"
             android:src="@drawable/logo" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="AWARD"
+            android:layout_marginTop="@dimen/dimens_10dp"
             android:layout_gravity="center_horizontal"
             android:textStyle="bold"
-            android:textSize="@dimen/text_35sp"/>
+            android:textSize="28sp"/>
     </LinearLayout>
 
 

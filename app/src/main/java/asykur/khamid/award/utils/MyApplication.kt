@@ -8,5 +8,6 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         AppDatabase.getAppDatabase(applicationContext)
+
     }
 }
