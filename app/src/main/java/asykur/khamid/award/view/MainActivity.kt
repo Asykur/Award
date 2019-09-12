@@ -128,9 +128,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun getData() {
-//        val liveDataAwards: MutableLiveData<List<AwardsModel>> = MutableLiveData()
-
-        val typeList = mapType?.toTypedArray()
 
         if (isFiltered){
             if (point != 0 && mapType != null && mapType?.size != 0){
@@ -157,16 +154,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         liveDataAwards.observe(this, Observer { data ->
             if (data != null) {
-                isLoading = false
+                if (data.isNotEmpty()){
+                    isLoading = false
 
-                if (isFiltered){
-                    awardList.clear()
+                    if (isFiltered){
+                        awardList.clear()
+                    }
+                    awardList.addAll(data)
+                    adapter.setAdapterData(awardList)
+                    adapter.notifyDataSetChanged()
+                    offset = (offset - 1) * limit
+                    allDataSize -= limit
+                }else{
+                    adapter.noMoreAwards(true)
+                    adapter.notifyDataSetChanged()
                 }
-                awardList.addAll(data)
-                adapter.setAdapterData(awardList)
-                adapter.notifyDataSetChanged()
-                offset = (offset - 1) * limit
-                allDataSize -= limit
+
             } else {
                 adapter.noMoreAwards(true)
                 adapter.notifyDataSetChanged()
