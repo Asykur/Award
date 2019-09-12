@@ -14,17 +14,20 @@ import com.bumptech.glide.request.transition.Transition
 import kotlinx.android.synthetic.main.item_awards.view.*
 import kotlinx.android.synthetic.main.item_loadmore.view.*
 
-class AwardsAdapter (private var awardsList: List<AwardsModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class AwardsAdapter (private var awardsList: List<AwardsModel>?): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
+    companion object{
+        var isEmptyAwards: Boolean = false
+    }
     private val viewTypeItem = 0
     private val viewTypeLoading = 1
 
-    fun setAdapterData(list: List<AwardsModel>){
+    fun setAdapterData(list: List<AwardsModel>?){
         this.awardsList = list
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == awardsList.size){
+        return if (position == awardsList?.size){
             viewTypeLoading
         }else{
             viewTypeItem
@@ -44,28 +47,37 @@ class AwardsAdapter (private var awardsList: List<AwardsModel>): RecyclerView.Ad
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is VHItem){
-            holder.onBind(awardsList[position])
+            holder.onBind(awardsList?.get(position))
         }else if(holder is VHLoadMore){
-            holder.onBind(awardsList)
+            holder.onBind()
         }
     }
 
     override fun getItemCount(): Int {
-        return if (awardsList.isEmpty()){
+        return if (awardsList == null){
             0
         }else{
-            awardsList.size+1
+            awardsList?.size!! + 1
         }
     }
+
+    fun noMoreAwards(isEmpty: Boolean) {
+        isEmptyAwards = isEmpty
+    }
+
 
     inner class VHLoadMore(view: View):RecyclerView.ViewHolder(view){
         private val layoutEmpty = view.layoutEmpty
         private val progress = view.pgLoadMore
 
-        fun onBind(awardsList: List<AwardsModel>) {
-            if (awardsList.isEmpty()){
+        fun onBind() {
+            val iss = isEmptyAwards
+            if (isEmptyAwards){
                 progress.visibility = View.GONE
                 layoutEmpty.visibility = View.VISIBLE
+            }else{
+                progress.visibility = View.VISIBLE
+                layoutEmpty.visibility = View.GONE
             }
         }
     }
@@ -76,10 +88,10 @@ class AwardsAdapter (private var awardsList: List<AwardsModel>): RecyclerView.Ad
         private val point = view.tvAwardPoint
         private val img = view.imgAward
 
-        fun onBind(awardsModel: AwardsModel) {
+        fun onBind(awardsModel: AwardsModel?) {
             Glide.with(img.context)
                 .asBitmap()
-                .load(awardsModel.imageUrl)
+                .load(awardsModel?.imageUrl)
                 .dontAnimate()
 //                .transition(DrawableTransitionOptions.withCrossFade(1000))
                 .placeholder(R.drawable.logo)
@@ -97,14 +109,14 @@ class AwardsAdapter (private var awardsList: List<AwardsModel>): RecyclerView.Ad
                     }
                 })
 
-            if (awardsModel.type.equals("Vouchers",ignoreCase = true)){
+            if (awardsModel?.type.equals("Vouchers",ignoreCase = true)){
                 type.background = type.context.resources.getDrawable(R.drawable.small_rounded_blue)
-            }else if(awardsModel.type.equals("Products",ignoreCase = true)){
+            }else if(awardsModel?.type.equals("Products",ignoreCase = true)){
                 type.background = type.context.resources.getDrawable(R.drawable.small_rounded_brown)
             }
-            name.text = awardsModel.name
-            type.text = awardsModel.type
-            val poin = CurrencyIDRFormatter().formatIDR(awardsModel.point,false)
+            name.text = awardsModel?.name
+            type.text = awardsModel?.type
+            val poin = CurrencyIDRFormatter().formatIDR(awardsModel?.point,false)
             point.text = "$poin Point"
         }
 

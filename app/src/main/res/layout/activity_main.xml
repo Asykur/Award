@@ -27,6 +27,7 @@
             android:id="@+id/rvawards"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorWhite"
             android:layout_below="@+id/appBar"
             android:scrollbars="none" />
     </RelativeLayout>
@@ -37,6 +38,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="@color/colorWhite"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_home_drawer" />
 

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import asykur.khamid.award.model.AwardsModel
 import asykur.khamid.award.utils.SetDataAwards
+import asykur.khamid.award.view.MainActivity
 
 class AwardsViewModel: ViewModel() {
 
@@ -14,6 +15,7 @@ class AwardsViewModel: ViewModel() {
     private var list: ArrayList<AwardsModel> = ArrayList()
     private val allData = SetDataAwards().getDataAwards()
     private var dataSize: Int = allData.size
+    private var isEnd = false
 
     fun getDataAwards(){
         if (dataSize >= end){
@@ -22,12 +24,17 @@ class AwardsViewModel: ViewModel() {
             start += 10
         }else{
             subList(start,dataSize)
+            isEnd = true
         }
     }
 
     private fun subList(start: Int, end: Int){
-        list.addAll(allData.subList(start,end))
-        awardsViewModel.value = list
+        if (!isEnd){
+            list.addAll(allData.subList(start,end))
+            awardsViewModel.value = list
+        }else{
+            MainActivity().noMoreData()
+        }
     }
 //    private fun loopData(ends: Int){
 //        if (start > 0){

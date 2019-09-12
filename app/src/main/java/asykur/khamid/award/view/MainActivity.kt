@@ -15,6 +15,7 @@ import asykur.khamid.award.R
 import asykur.khamid.award.adapter.AwardsAdapter
 import asykur.khamid.award.model.AwardsModel
 import asykur.khamid.award.utils.AppPreference
+import asykur.khamid.award.utils.GeneralDialog
 import asykur.khamid.award.viewmodel.AwardsViewModel
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var page = 0
     private var limit = 9
     lateinit var drawerLayout: DrawerLayout
+    private lateinit var progress: GeneralDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(tb)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_filter)
 
+        progress = GeneralDialog("Logging out process..")
         drawerLayout = drawer
         viewModel = ViewModelProviders.of(this).get(AwardsViewModel::class.java)
         getData()
@@ -78,7 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                 isLoading = true
                                 loadData()
                             }
-                        }, 1500)
+                        }, 2000)
                     }
                 }
             }
@@ -102,8 +105,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 adapter.setAdapterData(awardList)
                 adapter.notifyDataSetChanged()
                 isLoading = false
+            } else {
+                adapter.noMoreAwards(true)
+                adapter.notifyDataSetChanged()
             }
         })
+    }
+
+    fun noMoreData() {
+        AwardsAdapter.isEmptyAwards = true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -116,9 +126,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun doLogout() {
-        AppPreference.setPreference(this).putBoolean(AppPreference.isLogin, false).commit()
-        startActivity(intentFor<SplashActivity>())
-        finishAffinity()
+        progress.show(this.supportFragmentManager, null)
+        Handler().postDelayed({
+            progress.dismissAllowingStateLoss()
+            AppPreference.setPreference(this).putBoolean(AppPreference.isLogin, false).commit()
+            startActivity(intentFor<SplashActivity>())
+            finishAffinity()
+        }, 2000)
     }
 
     private fun gotoHome() {

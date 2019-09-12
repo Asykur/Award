@@ -3,10 +3,9 @@ package asykur.khamid.award.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import asykur.khamid.award.utils.Constant
 
 
-@Entity(tableName = Constant.tableName)
+@Entity(tableName = "TABLE_EMAIL")
 data class EmailModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,

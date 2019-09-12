@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:gravity="center_horizontal"
+        android:padding="@dimen/dimens_10dp"
         android:orientation="vertical"
         android:visibility="gone">
         <ImageView
@@ -25,6 +26,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oops.. Data Empty"/>
+            android:text="Oops.. No more Awards"/>
     </LinearLayout>
 </LinearLayout>
